@@ -72,6 +72,9 @@ header {
 }
 .basket-Num {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  min-width: 25px;
   left: 17px;
   top: -10px;
   font-size: 14px;
