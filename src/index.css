@@ -60,7 +60,13 @@ header {
   align-items: center;
   gap: 10px;
 }
-
+.basket-logo {
+  cursor: pointer;
+}
+.basket-price {
+  text-align: right;
+  width: 170px;
+}
 .basket-logo {
   position: relative;
 }
@@ -99,6 +105,9 @@ header {
 .like-top::after {
   top: -6px;
   left: 1px;
+}
+.user {
+  cursor: pointer;
 }
 .logo {
   display: flex;
@@ -213,20 +222,25 @@ main h1 {
   margin: 0 20px;
 }
 .goods-img {
-  /* height: 300px; */
+  display: flex;
+  width: 100%;
+  justify-content: center;
   /* background-color: aqua; */
-  overflow:hidden;
-  object-fit: cover;
+  overflow: hidden;
+  /* align-items: center;   */
 }
 .goods-img img{
-  /* width: 289px; */
-  /* height: 290px; */
-  /* object-fit: cover; */
+  display: block;
+  object-fit: contain;
 }
 .price {
   color: var(--txt-Orange, #bb8c5f);
   font-size: 24px;
   font-weight: 700;
+}
+.total {
+  width: 100%;
+  height: 20px;
 }
 .card-buttons {
   display: flex;

@@ -1,16 +1,23 @@
 import { Card } from "./Card";
-import { goods } from "./Goods";
+import { useContext } from "react";
+import { StoreContext } from "../App";
 
 export const Main = () => {
+  const { goods_, setGoods_, setBasket} = useContext(StoreContext);
   return (
     <main>
-        <h1>Товары:</h1>
+      <h1>Товары:</h1>
       <div className="cards">
-        {
-          goods.map(item => {
-            return <Card key={item.id} goods={item}></Card>
-          })
-        }
+        {goods_.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              goods={item}
+              setGoods={setGoods_}
+              setBasket={setBasket}
+            ></Card>
+          );
+        })}
       </div>
     </main>
   );

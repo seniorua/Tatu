@@ -1,23 +1,57 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { StoreContext } from "../App";
 
 export const Card = (props) => {
+  const data = useContext(StoreContext);
   const [amount, setAmount] = useState(0);
-  const [favorite, setFavorite] = useState(props.goods.favorite);
+  // const [numGoods, setNumGoods] = useState(0);
+  // const addedGoods = [];
+  // //const [favorite, setFavorite] = useState(props.goods.favorite);
   const minusPress = () => {
-    if (amount === 0) return
+    if (!amount) return
     setAmount(amount - 1)
+
   }
   const plusPress = () => {
     setAmount(amount + 1);
     
   }
   const addPress = () => {
-    
+    props.setBasket(prev => {
+      return prev + amount * props.goods.price;
+    })
+    setAmount(0)
+    // setNumGoods(prev => {
+    //   if(addedGoods.length) {
+    //     console.log('true, ',addedGoods.length);
+    //     addedGoods.push(props.goods.id);
+    //     console.log('addedGoods: ', addedGoods);
+    //   }
+    //   else {
+    //     if(amount){
+    //       addedGoods.push(props.goods.id);
+    //       console.log('addedGoods: ', addedGoods);
+    //     }
+    //     console.log('false, ', addedGoods.length);
+    //   }
+    //   console.log(props.goods.id);
+    // })
   }
   const likePress = () => {
     // Почему не работает так:
     // setFavorite(prev => return !prev)
-    setFavorite(prev => {return !prev})
+    // а работает вот так:
+    // setFavorite(prev => {return !prev})
+    props.setGoods(prev => {
+      const temp = [...prev];
+      temp.forEach(item => {
+        if(props.goods.id === item.id){
+          item.favorite = !item.favorite;
+        }
+      })
+      return temp;
+    });
   }
   
   return (
@@ -27,7 +61,7 @@ export const Card = (props) => {
             <div className="new-card2">Новинка</div>
           </div>
           <div className="like-card" onClick={likePress}>
-            <img src={favorite ? '/public/assets/img/ico/heart_active.svg' : '/public/assets/img/ico/heart.svg'} alt="" />
+            <img src={props.goods.favorite ? '/public/assets/img/ico/heart_active.svg' : '/public/assets/img/ico/heart.svg'} alt="" />
           </div>
         </div>
         <div className="goods-img">
@@ -38,6 +72,7 @@ export const Card = (props) => {
           <h3 className="price">{props.goods.price} EUR</h3>
         </div>
         <div className="card-buttons">
+          <div className="total">{amount ? `Заказ на: ${amount * props.goods.price} EUR` : ''}</div>
           <div className="card-add-wrap">
             <div className="card-add-wrap1">
               <button className="card-add" onClick={addPress}>В корзину</button>

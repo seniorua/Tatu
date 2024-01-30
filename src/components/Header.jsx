@@ -1,4 +1,7 @@
+import { useContext } from "react";
+import { StoreContext } from "../App";
 export const Header = () => {
+  const {basket,}  = useContext(StoreContext);
   return (
     <header>
       <div className="wrap1216">
@@ -19,10 +22,9 @@ export const Header = () => {
           </div>
           <div className="heder-right">
             <div className="basket">
-              <div className="basket-price">372 EUR</div>
+              <div className="basket-price">{basket ? `${basket} EUR` : ''} </div>
               <div className="basket-logo">
                 <img src="/public/assets/img/ico/basket.svg" alt="" />
-                <div className="basket-Num">17</div>
               </div>
             </div>
               <div className="like-top"></div>
