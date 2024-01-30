@@ -19,30 +19,14 @@ export const Card = (props) => {
   }
   const addPress = () => {
     props.setBasket(prev => {
-      return prev + amount * props.goods.price;
+      return {
+        amounts: prev.amounts + amount * props.goods.price,
+        total: prev.total + amount,
+      }
     })
     setAmount(0)
-    // setNumGoods(prev => {
-    //   if(addedGoods.length) {
-    //     console.log('true, ',addedGoods.length);
-    //     addedGoods.push(props.goods.id);
-    //     console.log('addedGoods: ', addedGoods);
-    //   }
-    //   else {
-    //     if(amount){
-    //       addedGoods.push(props.goods.id);
-    //       console.log('addedGoods: ', addedGoods);
-    //     }
-    //     console.log('false, ', addedGoods.length);
-    //   }
-    //   console.log(props.goods.id);
-    // })
   }
   const likePress = () => {
-    // Почему не работает так:
-    // setFavorite(prev => return !prev)
-    // а работает вот так:
-    // setFavorite(prev => {return !prev})
     props.setGoods(prev => {
       const temp = [...prev];
       temp.forEach(item => {
@@ -57,7 +41,7 @@ export const Card = (props) => {
   return (
       <div className="card">
         <div className="card-top">
-          <div className={props.goods.new ? 'new-card1' : 'new-card1 hideNew'}>
+          <div className={props.goods.new ? 'new-card1' : 'new-card1 hide'}>
             <div className="new-card2">Новинка</div>
           </div>
           <div className="like-card" onClick={likePress}>

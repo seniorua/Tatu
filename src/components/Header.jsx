@@ -22,9 +22,11 @@ export const Header = () => {
           </div>
           <div className="heder-right">
             <div className="basket">
-              <div className="basket-price">{basket ? `${basket} EUR` : ''} </div>
+              <div className="basket-price">{basket.amounts ? `${basket.amounts} EUR` : ''} </div>
               <div className="basket-logo">
                 <img src="/public/assets/img/ico/basket.svg" alt="" />
+                <div className={basket.total ? 'basket-Num' : 'basket-Num hide'}>{basket.total}</div>
+                
               </div>
             </div>
               <div className="like-top"></div>

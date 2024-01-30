@@ -189,7 +189,7 @@ main h1 {
   justify-content: space-between;
   user-select: none;
 }
-.hideNew {
+.hide {
   visibility: hidden;
 }
 .new-card1 {
@@ -229,7 +229,7 @@ main h1 {
   overflow: hidden;
   /* align-items: center;   */
 }
-.goods-img img{
+.goods-img img {
   display: block;
   object-fit: contain;
 }

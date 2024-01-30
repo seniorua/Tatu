@@ -5,17 +5,21 @@ import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
 import { goods } from "./components/Goods";
 
-export const StoreContext = createContext('');
+export const StoreContext = createContext("");
 
 export const App = () => {
   const [goods_, setGoods_] = useState(goods);
-  const [basket, setBasket] = useState(0);
+  // const [basket, setBasket] = useState(0);
+  const [basket, setBasket] = useState({ 
+    amounts: 0, 
+    total: 0,
+  });
   const ctxObj = {
     goods_,
     setGoods_,
     basket,
     setBasket,
-  }
+  };
   return (
     <div>
       <StoreContext.Provider value={ctxObj}>
